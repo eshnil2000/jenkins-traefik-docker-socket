@@ -24,5 +24,25 @@ This image was created to be a small layer on top of jenkins:alpine such that it
 
 `$ docker run -d -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 -p 50000:50000 jareddlc/jenkins-with-docker-socket:lts-alpine`
 
+# Alternate instructions:
+``` 
+cd lts
+./docker-build.sh
+docker stack deploy -c docker-compose.yml jenkins
 
+```
+### Get password by docker logs container-id
+
+### sample docker command, using FreeStyle Option for pipeline, run shell command:
+```
+docker service create --network docker-browser2_default \
+--name whoami2 --container-label traefik.http.routers.whoami2.rule='Host(`whoami2.localhost`)' \
+--container-label traefik.http.routers.whoami2.service="whoami2" \
+--container-label traefik.http.services.whoami2.loadbalancer.server.port="8000" \
+--container-label traefik.docker.network="docker-browser2_default" \
+--label traefik.http.routers.whoami2.rule='Host(`whoami2.localhost`)' \
+--label traefik.http.routers.whoami2.service="whoami2" \
+--label traefik.http.services.whoami2.loadbalancer.server.port="8000" \
+--label traefik.docker.network="docker-browser2_default" jwilder/whoami
+```
 For more information and options see official jenkins repo: https://hub.docker.com/_/jenkins/
