@@ -1,0 +1,31 @@
+#docker network create -d overlay --attachable docker-browser2_default
+#docker stack deploy -c docker-compose.yml jenkins
+# Assume you have Traefik running : https://github.com/eshnil2000/traefik-docker-browser-letsencrypt
+
+version: '3.3'
+networks:
+  docker-browser2_default:
+    driver: overlay
+    external:
+      name:  docker-browser2_default
+services:
+  
+  jenkins-with-docker-socket:
+    image: jenkins-with-docker-socket:lts-alpine
+    labels:
+      - traefik.http.routers.jenkins-with-docker-socket.rule=Host(`jenkins.localhost`)
+      #- traefik.http.routers.jenkins-with-docker-socket.tls=true
+      #- traefik.http.routers.jenkins-with-docker-socket.tls.certresolver=lets-encrypt
+      #- traefik.port=80
+      #- traefik.http.routers.jenkins-with-docker-socket.entrypoints: web
+      - traefik.http.routers.jenkins-with-docker-socket.service=jenkins-with-docker-socket
+      - traefik.http.services.jenkins-with-docker-socket.loadbalancer.server.port=8080
+      - traefik.docker.network=docker-browser2_default
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+    
+    networks:
+      docker-browser2_default:
+        #external:
+          #name:  docker-browser2_default
