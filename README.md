@@ -1,5 +1,6 @@
 # jenkins-with-docker-socket
 Official Jenkins image with Docker socket
+#### https://jordimarti.tech/continuous-integration-environment-with-docker-compose-using-traefik-and-jenkins/
 
 [![Docker Build](https://img.shields.io/docker/build/jareddlc/jenkins-with-docker-socket.svg)](https://hub.docker.com/r/jareddlc/jenkins-with-docker-socket/)
 [![Docker Stars](https://img.shields.io/docker/stars/jareddlc/jenkins-with-docker-socket.svg)](https://hub.docker.com/r/jareddlc/jenkins-with-docker-socket/)
