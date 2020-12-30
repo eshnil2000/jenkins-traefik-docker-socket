@@ -47,4 +47,14 @@ docker service create --network docker-browser2_default \
 --label traefik.http.services.whoami2.loadbalancer.server.port="8000" \
 --label traefik.docker.network="docker-browser2_default" jwilder/whoami
 ```
+
+### or run docker-compose, using the following in Freestyle Option. any containers launched will show up on host
+### copy docker-compose.yml file to $PWD/jenkins_home, which will copy into container since volume is mapped
+```
+apt install curl
+curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+docker-compose -f /var/jenkins_home/docker-compose2.yml up
+```
+
 For more information and options see official jenkins repo: https://hub.docker.com/_/jenkins/
