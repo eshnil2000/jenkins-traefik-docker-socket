@@ -24,6 +24,7 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
+      - $PWD/jenkins_home:/var/jenkins_home
     
     networks:
       docker-browser2_default:
