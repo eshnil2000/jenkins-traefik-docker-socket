@@ -44,5 +44,5 @@ RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER ${USER_JENKINS}
 
 COPY docker-socket.sh /
-
+WORKDIR /var/jenkins_home
 ENTRYPOINT ["/docker-socket.sh"]
