@@ -27,8 +27,9 @@ This image was created to be a small layer on top of jenkins:alpine such that it
 
 # Alternate instructions:
 ``` 
-cd lts
+cd lts-alpine
 ./docker-build.sh
+cd ..
 docker stack deploy -c docker-compose.yml jenkins
 
 ```
